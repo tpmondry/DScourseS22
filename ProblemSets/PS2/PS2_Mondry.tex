@@ -1,0 +1,45 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Problem Set 2 - ECON 5253}
+\author{Thomas Mondry}
+
+\begin{document}
+\maketitle
+
+\section{The data scientist's tools}
+
+I understand data science as a process for using data to extract insights; the tools used by data scientists can be organized by the role they play in this process.
+
+\begin{itemize}
+    \item Tools for working with data
+    \begin{itemize}
+        \item Data acquisition: Web scraping, usually either through manual HTML scraping or APIs
+        \item Big data management: File splitting (useful in limited situations), computing clusters \& RDDs (using software such as Hadoop or Spark), database transformation tools (i.e. SQL)
+    \end{itemize}
+    \item Tools for getting insights from data
+    \begin{itemize}
+        \item Data visualization: Packages built to rurn natively in programming languages (e.g. R's ggplot2, Python's matplotlib, Julia's Plots.jl), or third party visualization software (e.g. Tableau, Power BI)
+        \item Project formulation \& measurement: awareness of what is contained in the data \& quantifiable parameter(s) of interest
+        \item Modeling:
+        \begin{itemize}
+            \item Goals: testing theories, predicting behavior, extracting causality (especially useful in econometric applications)
+            \item Programming languages: R and Python (most common), Julia (relatively new \& powerful)
+            \item Model types: regression, classification, clustering
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\end{document}
