@@ -35,18 +35,50 @@ This is difficult because the layout of the HTML table containing the clues and 
 	
 \end{enumerate}
 
-For this problem set, I ran the data-scraping process on 100 consecutive "regular" (i.e., not from a special tournament) games of \textit{Jeopardy!} from the 2001-2002 season in order to generate some data for visualization. The data object is stored in \textbf{jData\_100games.rda}, which is saved both in the directory for this problem set and in /FinalProject/data.
+For this problem set, I ran the data scraping process on 100 consecutive "regular" (i.e., not from a special tournament) games of \textit{Jeopardy!} from the 2001-2002 season in order to generate some data for visualization. The data object is stored in \textbf{jData\_100games.rda}, which is saved both in the directory for this problem set and in /FinalProject/data.
 
 \subsection{Problem-specific data cleaning -- in progress}
 
-Once I select a research question, I will use my data object (with a larger sample of games for the final project) to create a tabular dataset of revelant features which I can then use to attempt to model the outcome. Since I don't yet have a problem in mind, I didn't create a full data cleaning process for this problem set; however, as shown in the \textbf{PS6\_Mondry.R} script and described below, I did calculate a few metrics for visualizations. For these visualizations, I omitted the ??? of the 100 games in the sample which had more than 3 missing clues (out of 60).
+Once I select a research question, I will use my data object (with a larger sample of games for the final project) to create a tabular dataset of revelant features which I can then use to attempt to model the outcome. Since I don't yet have a problem in mind, I didn't create a full data cleaning process for this problem set; however, as shown in the \textbf{PS6\_Mondry.R} script and described below, I did calculate a few metrics for visualizations. For these visualizations, I omitted the 15 of the 100 games in the sample which had more than 4 missing clues (out of 60).
 
 \section{Three visualizations}
 
-\subsection{Relationship between}
+\subsection{Relationship between Coryat score and true post-Double Jeopardy score}
 
-\subsection{Graph of}
+A player's Coryat score (a concept developed by former \textit{Jeopardy!} champion Karl Coryat) is defined as the score they would have after the first two rounds of the game if Daily Double wagers were fixed to the underlying point value of the clue. So, for example, if a player found a Daily Double in a \$1,600 clue in the Double Jeopardy round, wagered \$3,000, and answered correctly, their true score would increase by \$3,000; however, their Coryat score would only increase by \$1,600; Coryat scores work the same way if a player answers a Daily Double incorrectly. The Coryat score was intended for viewers to follow along at home and measure their performance in games, but is also a useful metric for separating betting strategy from game scores. A large difference between Coryat score and true post-Double Jeopardy score is generally an indicator of aggressive betting.
 
-\subsection{Relationship between}
+\smallskip
+
+\includegraphics[width=\textwidth]{PS6a_Mondry.png}
+
+\smallskip
+
+This plot shows the extent of this difference as observed in all 3 players from all 85 games in the data, relative to a perfectly neutral wagering strategy (on average) which is represented by the line with unit slope. Points to the right of the line correspond to successful aggressive wagering, while points to the left of the line correspond to unsuccessful aggressive wagering.
+
+Final Jeopardy wagers cannot be considered generally indicative of either skill nor risk preferences, since in practice players tend to select their wagers deterministically based on their standing relative to their opponents. However, I wanted to see if there appears to be any correlation between the success of earlier aggressive wagers and the success of large Final Jeopardy wagers using the color scale. We can observe that many points to the right of the line correspond to large gains in the final round, and many points to the left correspond to large losses; however, this effect does not appear to be very pronounced, and there are many exceptions.
+
+\subsection{Final Jeopardy wagers by post-Double Jeopardy ranking}
+
+To get a better idea of how Final Jeopardy wagering behavior could be modeled, I looked at the sample distributions of Final Jeopardy wagers for players in each ranking going into the Final Jeopardy round. This information is represented in this plot:
+
+\smallskip
+
+\includegraphics[width=\textwidth]{PS6b_Mondry.png}
+
+\smallskip
+
+This is a smaller sample than I would ideally want to use, as the histograms are pretty choppy, but we can observe some general differences. Players which lead the game going into the final round are more likely to make smaller wagers, in comparison to players that are in second place. Interestingly, players in last place going into Final Jeopardy also make small wagers in a high proportion of cases, but because this metric is an absolute dollar amount, this could be because last-place players have less money to wager.
+
+\subsection{Relationship between large Final Jeopardy wagers and final placement}
+
+Of the 255 players in the data, 84 wagered more than 90\% of their pre-Final Jeopardy money in Final Jeopardy. I wanted to see how the final placement outcomes differ for these players, compared to those who wagered more conservatively.
+
+\smallskip
+
+\includegraphics[width=5in]{PS6c_Mondry.png}
+
+\smallskip
+
+As expected, players who make large wagers are proportionally much less likely to win than those who don't. This is likely due in large part to the fact that the necessity of making a large wager often indicates that a player is either well behind the other players, in which case they are unlikely to score enough points to win, or that the player has a narrow lead, which makes Final Jeopardy more of a 50/50 gamble. Interestingly, the proportional likelihood of placing second is about the same whether or not the wager was very large. This may be because in games where large wagers are necessary for any player, they are frequently necessary for more than one player, so one of the players who makes a large wager is likely to place second.
 
 \end{document}
