@@ -48,10 +48,12 @@ jDatatest$player %>%
       mutate(final.rank = 1:3) # adding final rank column
   }) %>%
   do.call(what = 'rbind') %>%
-  mutate(bigwager = ifelse(fj.wager/dj.score > 0.9, 1, 0)) %>% # 84/255 ~ 33% of players wagered more than 90% of their money
+  mutate(bigwager = ifelse(fj.wager/dj.score > 0.9, 'Yes', 'No')) %>% # 84/255 ~ 33% of players wagered more than 90% of their money
   #filter(bigwager == 1) %>% # only looking at players who made these big wagers
   ggplot(aes(fill = as.character(final.rank), x = bigwager)) +
   geom_bar() +
   theme_bw() +
-  labs(title = '')
-  
+  labs(title = 'Relationship between large Final Jeopardy wagers and final placement',
+       x = 'Did the player wager more than 90% of their pre-Final Jeopardy money?',
+       y = '',
+       fill = 'Final placement')
