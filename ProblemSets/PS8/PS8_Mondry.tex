@@ -1,0 +1,65 @@
+\documentclass{article}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+
+\title{Problem Set 8 - ECON 5253}
+\author{Thomas Mondry}
+
+\begin{document}
+\maketitle
+
+The table below shows the OLS estimate for the regression model, obtained using the matrix solution under the hood of R's \texttt{lm} function. Generally, nearly identical solutions are obtained using the other assigned methods; some commentary is below.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}[t]{lc}
+		\toprule
+		X1 & 1.501\\
+		& \vphantom{9} (0.002)\\
+		X2 & -1.001\\
+		& \vphantom{8} (0.002)\\
+		X3 & -0.252\\
+		& \vphantom{7} (0.002)\\
+		X4 & 0.749\\
+		& \vphantom{6} (0.002)\\
+		X5 & 3.501\\
+		& \vphantom{5} (0.002)\\
+		X6 & -2.001\\
+		& \vphantom{4} (0.002)\\
+		X7 & 0.499\\
+		& \vphantom{3} (0.002)\\
+		X8 & 1.003\\
+		& \vphantom{2} (0.002)\\
+		X9 & 1.247\\
+		& \vphantom{1} (0.002)\\
+		X10 & 2.001\\
+		& (0.002)\\
+		\midrule
+		Num.Obs. & 100000\\
+		R2 & 0.991\\
+		R2 Adj. & 0.991\\
+		AIC & 145143.6\\
+		BIC & 145248.3\\
+		Log.Lik. & -72560.811\\
+		F & 1075525.531\\
+		RMSE & 0.50\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{itemize}
+	\item As shown above, the betas in the OLS estimate for the model are generally within a couple thousandths of the true betas which underlie the process with noise removed; standard errors are quite small, since the noise is small in magnitude relative to the data.
+	\item Using manually-coded gradient descent with step size equal to 3E-7 resulted in a nearly identical solution; the process converged to within a few thousandths of the solution at around 150 iterations.
+	\item Using \texttt{nloptr}, an identical solution was obtained using the L-BFGS gradient algorithm and the Nelder-Mead simplex algorithm; however, the L-BFGS converged enough to meet the (relatively strict) stop condition with only 10 iterations, while the Nelder-Mead did not converge sufficiently to meet this condition in 1000 iterations (although the results are functionally equivalent, relative to the amount of noise in the data).
+\end{itemize}
+
+\end{document}
