@@ -3,6 +3,7 @@ library(magrittr)
 library(nloptr)
 library(knitr)
 library(modelsummary)
+options("modelsummary_format_numeric_latex" = "plain")
 
 # setting seed
 set.seed(100)
@@ -137,4 +138,4 @@ OLS.model <- lm(y ~ X-1)
 ### output
 #####################################################################
 
-modelsummary(OLS.model)
+modelsummary(OLS.model, output = 'latex')
