@@ -1,0 +1,45 @@
+\documentclass{article}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm,landscape]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+
+\title{Problem Set 10 - ECON 5253}
+\author{Thomas Mondry}
+
+\begin{document}
+\maketitle
+
+\section{Table of results}
+
+\begin{table}[H]
+	\centering
+\begin{tabular}{l|r|r|l}
+	\hline
+	Algorithm & Accuracy & Standard error & Hyperparameters\\
+	\hline
+	Penalized logit (LASSO) & 0.85260 & 0.00204 & $\lambda$ = 1E-10\\
+	\hline
+	Decision trees & 0.86842 & 0.00053 & minimum split size = 10, maximum depth = 15, cost complexity = 0.01 \\
+	\hline
+	Neural network & 0.85675 & 0.00074 & $\lambda$ = 1, 4 hidden units\\
+	\hline
+	k-nearest neighbors & 0.84339 & 0.00179 & k = 30\\
+	\hline
+	Support vector machine & 0.86396 & 0.00062 & cost = 1, $\sigma$ = 0.25\\
+	\hline
+\end{tabular}
+\end{table}
+
+\section{Commentary}
+
+As shown in the table, most of the ML algorithms achieved similar accuracy levels on the test data. k-nearest neighbors is probably the least efficient approach to this problem -- it has a nominally lower accuracy score than all of the other algorithms, and it evaluates 30 neighbors in doing so, which is the maximum number we allowed it to try. SVM is slower to train than any of the other models by at least an order of magnitude, and while it is a strong model, the decision tree model works marginally better \& is much less computationally intensive. I would go with the decision tree based on its performance here, although if time or computational resources were a concern, the penalized logit model works nearly as well and trains very quickly.
+
+\end{document}
